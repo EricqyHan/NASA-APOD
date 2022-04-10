@@ -6,13 +6,15 @@ fetch(
   .then((data) => {
     console.log(data);
     console.log(data.hdurl);
-    console.log(data.media_type == "image");
+    //  console.log(data.media_type == "image");
     document.querySelector(".pictureDate").innerText = data.date;
     document.querySelector(".description").innerText = data.explanation;
     document.querySelector(".mediaType").innerText = data.media_type;
     document.querySelector("img").src = data.hdurl;
-    document.querySelector("img").classList.toggle("hidden");
-    document.querySelector("iframe").classList.add("hidden");
+    document.querySelector("img").style.display = "block";
+    document.querySelector("iframe").style.display = "none";
+    //  document.querySelector("img").classList.toggle("hidden");
+    //  document.querySelector("iframe").classList.add("hidden");
   })
   .catch((err) => {
     console.log(`error ${err}`);
@@ -31,25 +33,28 @@ function getNerdsOfAverageScienceAbility() {
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
       console.log(data);
-      console.log(data.hdurl);
-      console.log(data.url);
-      console.log(data.media_type == "video");
+      // console.log(data.hdurl);
+      // console.log(data.url);
+      // console.log(data.media_type == "video");
       // document.querySelector("iframe").src = data.url;
       if (data.media_type === "video") {
         document.querySelector("iframe").src = data.url;
         document.querySelector(".pictureDate").innerText = data.date;
-
         document.querySelector(".description").innerText = data.explanation;
         document.querySelector(".mediaType").innerText = data.media_type;
-        document.querySelector("iframe").classList.toggle("hidden");
-        document.querySelector("img").classList.add("hidden");
+        //   document.querySelector("iframe").classList.toggle("hidden");
+        //   document.querySelector("img").classList.add("hidden");
+        document.querySelector("img").style.display = "none";
+        document.querySelector("iframe").style.display = "block";
       } else if (data.media_type === "image") {
         document.querySelector(".pictureDate").innerText = data.date;
         document.querySelector(".description").innerText = data.explanation;
         document.querySelector(".mediaType").innerText = data.media_type;
         document.querySelector("img").src = data.hdurl;
-        document.querySelector("img").classList.toggle("hidden");
-        document.querySelector("iframe").classList.add("hidden");
+        //   document.querySelector("iframe").classList.add("hidden");
+        //   document.querySelector("img").classList.toggle("hidden");
+        document.querySelector("iframe").style.display = "none";
+        document.querySelector("img").style.display = "block";
       }
     })
     .catch((err) => {
