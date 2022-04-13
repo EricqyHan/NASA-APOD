@@ -1,61 +1,26 @@
 //The user will enter a date. Use that date to get the NASA picture of the day from that date! https://api.nasa.gov/
-fetch(
-  `https://api.nasa.gov/planetary/apod?api_key=qRvJnslXKsxgrQPBG9WqHE0XTxpy7Uae5qtKKcxl`
-)
-  .then((res) => res.json()) // parse response as JSON
-  .then((data) => {
-    console.log(data);
-    console.log(data.hdurl);
-    //  console.log(data.media_type == "image");
-    document.querySelector(".pictureDate").innerText = data.date;
-    document.querySelector(".description").innerText = data.explanation;
-    document.querySelector(".mediaType").innerText = data.media_type;
-    document.querySelector("img").src = data.hdurl;
-    document.querySelector("img").style.display = "block";
-    document.querySelector("iframe").style.display = "none";
-    //  document.querySelector("img").classList.toggle("hidden");
-    //  document.querySelector("iframe").classList.add("hidden");
-  })
-  .catch((err) => {
-    console.log(`error ${err}`);
-  });
+document.getElementById("input").valueAsDate = new Date();
+document.querySelector("button").addEventListener("click", getFetch);
 
-document
-  .querySelector("button")
-  .addEventListener("click", getNerdsOfAverageScienceAbility);
-
-function getNerdsOfAverageScienceAbility() {
-  let date = document.querySelector("input").value;
-
-  fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=qRvJnslXKsxgrQPBG9WqHE0XTxpy7Uae5qtKKcxl&date=${date}`
-  )
+function getFetch() {
+  const choice = document.querySelector("input").value;
+  const url = `https://api.nasa.gov/planetary/apod?api_key=qRvJnslXKsxgrQPBG9WqHE0XTxpy7Uae5qtKKcxl&date=${choice}`;
+  fetch(url)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
       console.log(data);
-      // console.log(data.hdurl);
-      // console.log(data.url);
-      // console.log(data.media_type == "video");
-      // document.querySelector("iframe").src = data.url;
-      if (data.media_type === "video") {
-        document.querySelector("iframe").src = data.url;
-        document.querySelector(".pictureDate").innerText = data.date;
-        document.querySelector(".description").innerText = data.explanation;
-        document.querySelector(".mediaType").innerText = data.media_type;
-        //   document.querySelector("iframe").classList.toggle("hidden");
-        //   document.querySelector("img").classList.add("hidden");
-        document.querySelector("img").style.display = "none";
-        document.querySelector("iframe").style.display = "block";
-      } else if (data.media_type === "image") {
-        document.querySelector(".pictureDate").innerText = data.date;
-        document.querySelector(".description").innerText = data.explanation;
-        document.querySelector(".mediaType").innerText = data.media_type;
+      if (data.media_type === "image") {
         document.querySelector("img").src = data.hdurl;
-        //   document.querySelector("iframe").classList.add("hidden");
-        //   document.querySelector("img").classList.toggle("hidden");
         document.querySelector("iframe").style.display = "none";
         document.querySelector("img").style.display = "block";
+      } else if (data.media_type === "video") {
+        document.querySelector("iframe").src = data.url;
+        document.querySelector("img").style.display = "none";
+        document.querySelector("iframe").style.display = "block";
       }
+      document.querySelector(".pictureDate").innerText = data.date;
+      document.querySelector("h2").innerText = data.media_type;
+      document.querySelector("h3").innerText = data.explanation;
     })
     .catch((err) => {
       console.log(`error ${err}`);
