@@ -22,8 +22,9 @@ function getFetch() {
         document.querySelector("iframe").style.display = "block";
       }
       document.querySelector(".pictureDate").innerText = data.date;
-      document.querySelector("h2").innerText = data.media_type;
-      document.querySelector("h3").innerText = data.explanation;
+      document.querySelector(".mediaType").innerText =
+        data.media_type.toUpperCase();
+      document.querySelector(".description").innerText = data.explanation;
     })
     .catch((err) => {
       console.log(`error ${err}`);

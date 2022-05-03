@@ -15,16 +15,34 @@
 </head>
 
 <body>
+   <header>
+      <h1>NASA Picture of the Day</h1>
+      <h3>Picture Date - <span class="pictureDate"></span></h3>
+   </header>
 
-   <h1>Picture Date - <span class="pictureDate"></span></h1>
-   <p>Enter a date</p>
-   <input type="date" name="" value="" placeholder="yyyy-mm-dd">
-   <button type="button" name="button">Get Picture/Image of the Day</button>
+   <section class="day-input-nav">
+      <section class="day-input">
+         <h2>Enter a date</h2>
+         <input type="date" name="" value="" placeholder="yyyy-mm-dd">
+         <button type="button" name="button">Submit</button>
+      </section>
+   </section>
 
-   <h2>Media Type: <span class="mediaType"></span></h2>
-   <img src="" alt="" width="500px" height="500px" class="hidden">
-   <iframe src="" width="500px" height="500px" frameborder="0" class="hidden" autoplay allow="autoplay"></iframe>
-   <h3>Description: <span class="description"></span></h3>
+
+   <section class="desc-img">
+      <aside>
+         <h2 class="media-type">Media Type: <span class="mediaType"></span></h2>
+         <h3>Description for Picture of the Day:</h3>
+         <p class="description"></p>
+      </aside>
+      <section class="pod-image">
+         <img src="" alt="" width="500px" height="500px" class="hidden">
+         <iframe src="" width="500px" height="500px" frameborder="0" class="hidden" autoplay allow="autoplay"></iframe>
+      </section>
+   </section>
+   <footer>
+      <h3>2022 - Designed by Eric Han</h3>
+   </footer>
 
    <script type="text/javascript" src="js/main.js"></script>
 </body>
